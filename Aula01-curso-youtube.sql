@@ -21,3 +21,21 @@ INSERT INTO estado (nome, sigla) VALUES ("Paraná", "PR");
 INSERT INTO estado (nome, sigla) VALUES ("São Paulo", "SP");
 
 SELECT * FROM estado;
+
+//SEGUNDA AULA
+
+CREATE TABLE cidade (
+  id INT NOT NULL AUTO_INCREMENT,
+  nome VARCHAR(200) NOT NULL,
+  data_cadastro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  ativo CHAR(1) NOT NULL DEFAULT 'S',
+  PRIMARY KEY (id),
+  estado_id INT NOT NULL,
+  CONSTRAINT fk_cidade_estado FOREIGN KEY (estado_id) REFERENCES estado (id),
+  CONSTRAINT cidade_ativo_deve_ser_S_ou_N CHECK (ativo IN ('S', 'N')),
+  CONSTRAINT cidade_unica UNIQUE(nome, estado_id)
+  );
+  
+  INSERT INTO cidade(nome, estado_id) VALUES ("Nova Esperança", 1);
+  
+  SELECT * FROM cidade;
