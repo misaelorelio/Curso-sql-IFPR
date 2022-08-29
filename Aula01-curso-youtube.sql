@@ -22,8 +22,6 @@ INSERT INTO estado (nome, sigla) VALUES ("São Paulo", "SP");
 
 SELECT * FROM estado;
 
-//SEGUNDA AULA
-
 CREATE TABLE cidade (
   id INT NOT NULL AUTO_INCREMENT,
   nome VARCHAR(200) NOT NULL,
@@ -39,3 +37,27 @@ CREATE TABLE cidade (
   INSERT INTO cidade(nome, estado_id) VALUES ("Nova Esperança", 1);
   
   SELECT * FROM cidade;
+  
+#Aula 03
+ALTER TABLE estado ADD COLUMN regiao INT;
+
+SELECT * FROM estado;
+
+DESCRIBE estado;
+DESC estado;
+
+ALTER TABLE estado MODIFY COLUMN regiao VARCHAR(100) NOT NULL;
+
+ALTER TABLE estado DROP COLUMN regia_estado;
+
+ALTER TABLE estado ADD COLUMN regiao VARCHAR(100) NOT NULL DEFAULT 'Valor não informado';
+
+ALTER TABLE estado MODIFY COLUMN regiao_estado VARCHAR(100) NOT NULL AFTER sigla;
+
+ALTER TABLE estado CHANGE regiao regiao_estado VARCHAR(100) NOT NULL;
+
+ALTER TABLE estado DROP CONSTRAINT coluna_ativo_deve_ser_S_ou_N;
+
+ALTER TABLE estado MODIFY COLUMN ativo ENUM('S', 'N') NOT null;
+
+insert into estado (nome, sigla, ativo) values ('Mato Grosso', 'MT', 'A');
