@@ -222,6 +222,51 @@ CONSTRAINT fk_venda_recebimento FOREIGN KEY (venda_id) REFERENCES venda(id)
 INSERT INTO recebimento(valor, numero_parcelas, desconto, juros, total_final, venda_id)VALUES(1000.36,3,35,5,1000,1);
 INSERT INTO recebimento(valor, numero_parcelas, desconto, juros, total_final, venda_id)VALUES(1006.00,2,21,5,1000,2);
 
+
+CREATE TABLE pagamento (
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+ativo CHAR(1) NOT NULL DEFAULT 'S',
+valor DECIMAL(8,2) NOT NULL,
+numero_parcelas INT NOT NULL,
+desconto DECIMAL(8,2) NOT NULL,
+juros DECIMAL(8,2) NOT NULL,
+total_final  DECIMAL(8,2) NOT NULL,
+compra_id INT NOT NULL,
+CONSTRAINT fk_compra_pagamento FOREIGN KEY (compra_id) REFERENCES compra(id)
+);
+
+INSERT INTO pagamento(valor, numero_parcelas, desconto, juros, total_final, compra_id)VALUES(1000.36,3,35,5,1000,1);
+INSERT INTO pagamento(valor, numero_parcelas, desconto, juros, total_final, compra_id)VALUES(1006.00,2,21,5,1000,1);
+
+CREATE TABLE caixa (
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
+ativo CHAR(1) NOT NULL DEFAULT 'S',
+saldo DECIMAL(8,2) NOT NULL,
+funcionario_id INT NOT NULL,
+CONSTRAINT fk_funcionario_caixa FOREIGN KEY (funcionario_id) REFERENCES funcionario(id)
+);
+
+INSERT INTO caixa(saldo, funcionario_id)VALUES(2000, 1);
+INSERT INTO caixa(saldo, funcionario_id)VALUES(3000, 2);
+
+CREATE TABLE item_caixa (
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+descricao VARCHAR(255) NOT NULL,
+valor DECIMAL(8,2) NOT NULL,
+natureza VARCHAR(100) NOT NULL,
+data_hora DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+caixa_id INT NOT NULL,
+pagamento_id INT NOT NULL,
+recebimento_id INT NOT NULL,
+CONSTRAINT fk_caixa_item_caixa FOREIGN KEY (caixa_id) REFERENCES caixa(id),
+CONSTRAINT fk_pagamento_item_caixa FOREIGN KEY (pagamento_id) REFERENCES pagamento(id),
+CONSTRAINT fk_recebimento_item_caixa FOREIGN KEY (recebimento_id) REFERENCES recebimento(id)
+);
+
+INSERT INTO item_caixa(descricao, valor, natureza, caixa_id, pagamento_id,  recebimento_id)VALUES('TESTE', 222, 'teste', 1, 1, 1) ;
+INSERT INTO item_caixa(descricao, valor, natureza, caixa_id, pagamento_id,  recebimento_id)VALUES('TESTE', 222, 'teste', 1, 1, 1) ;
+
 /*SELECT * FROM cidade;
   
 #Aula 03
