@@ -64,4 +64,3 @@ DELETE FROM cidade WHERE nome = 'BAURU';
 
 #13.Escreva todos os comandos necessários para excluir o cliente com o id “38”.
 	#não entendi, era para criar o cliente também?
-    #https://github.com/heliokamakawa/curso_bd/blob/master/02b-INSERT-lista%20de%20exercicios.sql
