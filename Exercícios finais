@@ -1,0 +1,23 @@
+01 - O que é JOIN? Quando é necessário?
+Permite que os dados de várias tabelas que estejam relacionadas sejam juntados em uma nova tabela. É necessário quando se quer mostrar os dados de várias tabelas em
+uma nova tabela.
+
+02 - Qual a sintaxe do JOIN? Maiúscula ou minúscula faz diferença? Existe algum padrão? Explique.
+SELECT nome colunas FROM tabela INNER JOIN outra tabela ON tabela.ID = outra tabela.ID
+Usando as letras maiuscula fica melhor para vizualizar e entender o código;
+Existe o padrão SQL89 e SQL92. No padrão 89 após o uso do FROM quando coloca a tabela 1 e depois a segunda é só separar por vírgula ex: tabela1, tabela2.
+Já no 92 usamos o FROM também mas usamos o INNER JOIN com a outra tabela, ou somente o JOIN EX: FROM tabela1 INNER JOIN tabela2.
+
+04 - O que é primordial para que o resultado tenha sentido em consultas com JOIN? Explique.
+
+05 - Existe mais de uma maneira de realizar o JOIN? Quantas? Qual é a mais eficiente? 
+Sim. Duas maneiras com o padrão 89 e 92. Os dois tem a mesma eficiência.
+
+06 - Para realizar o JOIN de 1523 tabelas, quantas comparações de junções são necessárias? Explique.
+
+
+01 - Liste o id e o nome de todas as cidades e as respectivas siglas do estado.
+SELECT cidade.nome, estado.sigla, cidade.id FROM estado, cidade WHERE estado.id = cidade.estado_id;
+SELECT c.id, c.nome, e.sigla FROM cidade c INNER JOIN estado e ON c.estado_id = e.id;
+
+02 - Em relação ao resultado do exercício anterior,note que os nomes das colunas não estão claras. Refaça o comando para que torne mais claras.
